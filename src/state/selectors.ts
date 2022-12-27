@@ -1,6 +1,10 @@
 import { State } from "./reducer";
 
-export const selectedIsLoggedIn = (state: State) => !!state.username;
-export const selectedUsername = (state: State) => state.username;
+export const selectIsLoggedIn = (state: State) => !!state.username;
+export const selectUsername = (state: State) => state.username;
 
-export const selectedMessages = (state: State) => state.messages;
+export const selectMessages = (state: State) => state.messages;
+
+export const selectMessage = (state: State, id: number) => state.messages[id];
+
+export const selectIsUserMessage = (state: State, messsageUserName: string) => messsageUserName === state.username;

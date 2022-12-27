@@ -1,7 +1,7 @@
 import React, { Dispatch } from "react";
 import { useReducer } from "react";
 import { Actions, initialState, reducer, State } from "../state/reducer";
-import { selectedIsLoggedIn } from "../state/selectors";
+import { selectIsLoggedIn } from "../state/selectors";
 import styles from "./App.module.css";
 import Chat from "./Chat/Chat";
 import Login from "./Login/Login";
@@ -14,7 +14,7 @@ export const ChatContext = React.createContext<ContextDefaultValue>({ state: ini
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const loggedIn = selectedIsLoggedIn(state);
+  const loggedIn = selectIsLoggedIn(state);
 
   const render = () => (loggedIn ? <Chat /> : <Login />);
 

@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: aqua;
+  max-width: 66%;
+  min-width: 20%;
+  width: auto;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.userMessage {
+  background-color: violet;
+  align-self: flex-end;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time {
+  font-size: 0.75rem;
+  color: rgb(87, 87, 87);
+}
+
+.userName {
+  all: unset;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.userName:hover {
+  color: gray;
+}
+.text {
+  margin: 0.5rem 0;
+}

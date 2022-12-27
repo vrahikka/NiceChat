@@ -20,10 +20,23 @@ export interface State {
   selectedUsername: string;
 }
 
+const BOT_USERNAME = "Bot";
 export const initialState: State = {
   username: "",
-  users: {},
-  messages: [],
+  users: {
+    [BOT_USERNAME]: {
+      username: BOT_USERNAME,
+      picture: "",
+      online: true,
+    },
+  },
+  messages: [
+    {
+      from_user: BOT_USERNAME,
+      sent_at: new Date(Date.now()),
+      text: "Well Hello there!",
+    },
+  ],
   selectedUsername: "",
 };
 
@@ -33,9 +46,11 @@ export interface Action {
 
 export enum ActionType {
   LogIn = "LOG_IN",
+  PostNewMessage = "POST_NEW_MESSAGE",
   NewMessageReceived = "NEW_MESSAGE",
   UserLogIn = "USER_LOG_IN",
   UserLogOut = "USER_LOG_OUT",
+  SetSelectedUser = "SET_SELECTED_USER",
 }
 
 export interface LogInAction extends Action {
@@ -43,6 +58,13 @@ export interface LogInAction extends Action {
 }
 function isLogInAction(action: Action): action is LogInAction {
   return action.type === ActionType.LogIn;
+}
+
+export interface PostNewMessageAction extends Action {
+  payload: string;
+}
+function isPostNewMessageAction(action: Action): action is PostNewMessageAction {
+  return action.type === ActionType.PostNewMessage;
 }
 
 export interface NewMessageAction extends Action {
@@ -66,9 +88,22 @@ function isUserLogOutAction(action: Action): action is UserLogOutAction {
   return action.type === ActionType.UserLogOut;
 }
 
-export type Actions = NewMessageAction | LogInAction | UserLogInAction | UserLogOutAction;
+export interface SetSelectedUserAction extends Action {
+  payload: string;
+}
+function isSetSelectedUserAction(action: Action): action is SetSelectedUserAction {
+  return action.type === ActionType.SetSelectedUser;
+}
+
+export type Actions = NewMessageAction | LogInAction | UserLogInAction | UserLogOutAction | PostNewMessageAction;
 
 export const reducer = (state: State, action: Actions) => {
+  if (isSetSelectedUserAction(action)) {
+    return { ...state, selectedUsername: action.payload };
+  }
+  if (isPostNewMessageAction(action)) {
+    return { ...state, messages: [...state.messages, { from_user: state.username, sent_at: new Date(Date.now()), text: action.payload }] };
+  }
   if (isUserLogOutAction(action)) {
     const user = { ...state.users[action.payload], online: false };
     return { ...state, users: { ...state.users, user } };
