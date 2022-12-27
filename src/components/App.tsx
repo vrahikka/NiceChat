@@ -1,19 +1,22 @@
 import React, { Dispatch } from "react";
 import { useReducer } from "react";
 import { Actions, initialState, reducer, State } from "../state/reducer";
+import { selectedIsLoggedIn } from "../state/selectors";
 import styles from "./App.module.css";
+import Chat from "./Chat/Chat";
 import Login from "./Login/Login";
 
 interface ContextDefaultValue {
-  state: State | null;
+  state: State;
   dispatch: Dispatch<Actions> | null;
 }
-export const ChatContext = React.createContext<ContextDefaultValue>({ state: null, dispatch: null });
+export const ChatContext = React.createContext<ContextDefaultValue>({ state: initialState, dispatch: null });
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const loggedIn = selectedIsLoggedIn(state);
 
-  const render = () => (state.loggedIn ? <p>CHAT</p> : <Login />);
+  const render = () => (loggedIn ? <Chat /> : <Login />);
 
   return (
     <ChatContext.Provider value={{ state, dispatch }}>

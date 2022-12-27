@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 
   const isNameValid = () => userName.length > 3 && userName.match(/^[a-zA-Z0-9]+$/);
 
-  const onClick = () => {
+  const onSubmit = () => {
     if (dispatch) {
       dispatch({ type: ActionType.LogIn, payload: userName });
     }
@@ -19,12 +19,12 @@ const Login: React.FC = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginModal}>
-        <form className={styles.form}>
+        <form onSubmit={onSubmit} className={styles.form}>
           <h1 className={styles.header}>join lobby</h1>
           <InputField id="username" label="Username" defaultValue={""} onInput={(value) => setUserName(value)} />
         </form>
         <p className={styles.infoText}> User name has to be more than 3 charachters long and cannot contain special characters.</p>
-        <button autoFocus className={styles.loginButton} disabled={!isNameValid()} onClick={onClick} type="submit">
+        <button autoFocus className={styles.loginButton} disabled={!isNameValid()} onClick={onSubmit} type="submit">
           Join Lobby
         </button>
       </div>
