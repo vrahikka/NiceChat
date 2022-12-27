@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { ActionType } from "../../state/reducer";
+import { ChatContext } from "../App";
 import InputField from "../InputField/InputField";
 import styles from "./Login.module.css";
 
 const Login: React.FC = () => {
+  const { dispatch } = React.useContext(ChatContext);
   const [userName, setUserName] = useState("");
 
   const isNameValid = () => userName.length > 3 && userName.match(/^[a-zA-Z0-9]+$/);
 
-  const onClick = () => {};
+  const onClick = () => {
+    if (dispatch) {
+      dispatch({ type: ActionType.LogIn, payload: userName });
+    }
+  };
 
   return (
     <div className={styles.loginContainer}>
