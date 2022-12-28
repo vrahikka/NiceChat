@@ -39,8 +39,8 @@ const Chat: React.FC = () => {
         <p>{userName}</p>
         <Button onClick={() => setDebug(!debug)} text="Debug" />
       </header>
-      <div id="messages_div" className={styles.content}>
-        <div className={styles.messages}>
+      <div className={styles.content}>
+        <div id="messages_div" className={styles.messages}>
           {messages.map((message, index) => (
             <Message key={`${message.from_user}${index}`} index={index} />
           ))}

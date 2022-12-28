@@ -26,7 +26,7 @@ const Debug: React.FC = () => {
       if (user.online) {
         dispatch({ type: ActionType.UserLogOut, payload: username });
       } else {
-        dispatch({ type: ActionType.UserLogIn, payload: { username, picture: "" } });
+        dispatch({ type: ActionType.UserLogIn, payload: { username } });
       }
     }
   };

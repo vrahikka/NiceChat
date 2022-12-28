@@ -1,9 +1,10 @@
 import React, { Dispatch } from "react";
 import { useReducer } from "react";
 import { Actions, initialState, reducer, State } from "../state/reducer";
-import { selectIsLoggedIn } from "../state/selectors";
+import { selectIsLoggedIn, selectSelectedUsername } from "../state/selectors";
 import styles from "./App.module.css";
 import Chat from "./Chat/Chat";
+import UserView from "./Chat/UserView/UserView";
 import Login from "./Login/Login";
 
 interface ContextDefaultValue {
@@ -15,11 +16,13 @@ export const ChatContext = React.createContext<ContextDefaultValue>({ state: ini
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const loggedIn = selectIsLoggedIn(state);
+  const selectedUsername = selectSelectedUsername(state);
 
   const render = () => (loggedIn ? <Chat /> : <Login />);
 
   return (
     <ChatContext.Provider value={{ state, dispatch }}>
+      {selectedUsername && <UserView />}
       <div className={styles.App}>{render()}</div>;
     </ChatContext.Provider>
   );

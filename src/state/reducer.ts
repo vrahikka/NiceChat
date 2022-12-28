@@ -6,7 +6,6 @@ interface ChatMessage {
 
 interface UserDataBase {
   username: string;
-  picture: string;
 }
 
 interface UserData extends UserDataBase {
@@ -26,7 +25,6 @@ export const initialState: State = {
   users: {
     [BOT_USERNAME]: {
       username: BOT_USERNAME,
-      picture: "",
       online: true,
     },
   },
@@ -103,28 +101,32 @@ export type Actions = NewMessageAction | LogInAction | UserLogInAction | UserLog
 
 export const reducer = (state: State, action: Actions) => {
   console.log(`${action.type}`, action.payload);
+  let newState = state;
   if (isSetSelectedUserAction(action)) {
-    return { ...state, selectedUsername: action.payload };
+    newState = { ...state, selectedUsername: action.payload };
   }
   if (isPostNewMessageAction(action)) {
     const sender = action.payload.username;
     const users = sender && sender !== state.username ? { ...state.users, [sender]: { username: sender, picture: "", online: true } } : state.users;
-    return { ...state, users, messages: [...state.messages, { from_user: action.payload.username ?? state.username, sent_at: new Date(Date.now()), text: action.payload.text }] };
+    newState = { ...state, users, messages: [...state.messages, { from_user: action.payload.username ?? state.username, sent_at: new Date(Date.now()), text: action.payload.text }] };
   }
   if (isUserLogOutAction(action)) {
     const user = state.users[action.payload];
     const users = { ...state.users, [action.payload]: { ...user, online: false } };
-    return { ...state, users: users };
+    newState = { ...state, users: users };
   }
   if (isLogInAction(action)) {
-    return { ...state, username: action.payload };
+    const users = { ...state.users, [action.payload]: { username: action.payload, online: true } };
+    newState = { ...state, username: action.payload, users };
   }
   if (isNewMessageAction(action)) {
-    return { ...state, messages: [...state.messages, action.payload] };
+    newState = { ...state, messages: [...state.messages, action.payload] };
   }
   if (isUserLogInAction(action)) {
     const users = { ...state.users, [action.payload.username]: { ...action.payload, online: true } };
-    return { ...state, users: users };
+    newState = { ...state, users: users };
   }
-  return state;
+
+  console.log("New state:", newState);
+  return newState;
 };
