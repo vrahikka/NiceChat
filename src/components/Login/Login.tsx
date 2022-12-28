@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ActionType } from "../../state/reducer";
 import { ChatContext } from "../App";
+import Button from "../Button/Button";
 import InputField from "../InputField/InputField";
 import styles from "./Login.module.css";
 
@@ -14,9 +15,6 @@ const Login: React.FC = () => {
     if (dispatch) {
       dispatch({ type: ActionType.LogIn, payload: userName });
     }
-    if (event && "preventDefault" in event) {
-      event.preventDefault();
-    }
   };
 
   return (
@@ -27,9 +25,7 @@ const Login: React.FC = () => {
           <InputField id="username" label="Username" value={userName} onInput={(value) => setUserName(value)} />
         </form>
         <p className={styles.infoText}> User name has to be more than 3 charachters long and cannot contain special characters.</p>
-        <button autoFocus className={styles.loginButton} disabled={!isNameValid()} onClick={() => onSubmit()} type="submit">
-          Join Lobby
-        </button>
+        <Button autoFocus text="Join Lobby" disabled={!isNameValid()} onClick={() => onSubmit()} />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ interface UserDataBase {
 }
 
 interface UserData extends UserDataBase {
-  online: boolean;
+  online?: boolean;
 }
 
 export interface State {
@@ -61,8 +61,12 @@ function isLogInAction(action: Action): action is LogInAction {
 }
 
 export interface PostNewMessageAction extends Action {
-  payload: string;
+  payload: {
+    text: string;
+    username?: string;
+  };
 }
+
 function isPostNewMessageAction(action: Action): action is PostNewMessageAction {
   return action.type === ActionType.PostNewMessage;
 }
@@ -98,15 +102,19 @@ function isSetSelectedUserAction(action: Action): action is SetSelectedUserActio
 export type Actions = NewMessageAction | LogInAction | UserLogInAction | UserLogOutAction | PostNewMessageAction;
 
 export const reducer = (state: State, action: Actions) => {
+  console.log(`${action.type}`, action.payload);
   if (isSetSelectedUserAction(action)) {
     return { ...state, selectedUsername: action.payload };
   }
   if (isPostNewMessageAction(action)) {
-    return { ...state, messages: [...state.messages, { from_user: state.username, sent_at: new Date(Date.now()), text: action.payload }] };
+    const sender = action.payload.username;
+    const users = sender && sender !== state.username ? { ...state.users, [sender]: { username: sender, picture: "", online: true } } : state.users;
+    return { ...state, users, messages: [...state.messages, { from_user: action.payload.username ?? state.username, sent_at: new Date(Date.now()), text: action.payload.text }] };
   }
   if (isUserLogOutAction(action)) {
-    const user = { ...state.users[action.payload], online: false };
-    return { ...state, users: { ...state.users, user } };
+    const user = state.users[action.payload];
+    const users = { ...state.users, [action.payload]: { ...user, online: false } };
+    return { ...state, users: users };
   }
   if (isLogInAction(action)) {
     return { ...state, username: action.payload };
@@ -115,7 +123,8 @@ export const reducer = (state: State, action: Actions) => {
     return { ...state, messages: [...state.messages, action.payload] };
   }
   if (isUserLogInAction(action)) {
-    return { ...state, users: { ...state.users, [action.payload.username]: { ...action.payload, online: true } } };
+    const users = { ...state.users, [action.payload.username]: { ...action.payload, online: true } };
+    return { ...state, users: users };
   }
   return state;
 };

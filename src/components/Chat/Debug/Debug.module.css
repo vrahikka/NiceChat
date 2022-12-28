@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: yellow;
+  width: 30%;
+  height: 100%;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.userList {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.userOnline {
+  background-color: limegreen;
+}
+
+.userOffline {
+  background-color: red;
+}

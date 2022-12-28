@@ -10,3 +10,7 @@
 .inputField {
   width: 100%;
 }
+
+.textArea {
+  resize: none;
+}
