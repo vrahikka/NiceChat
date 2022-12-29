@@ -1,4 +1,5 @@
 .main {
+  position: relative;
   display: flex;
   flex-direction: column;
   /* From https://css.glass */
@@ -8,7 +9,7 @@
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   max-width: 66%;
-  min-width: 20%;
+  min-width: 30%;
   width: auto;
   border-radius: 1rem;
   padding: 1rem;
@@ -43,4 +44,14 @@
 
 .text {
   margin: 0.5rem 0;
+}
+
+.avatar {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: -0.75rem;
+  right: -0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
 }

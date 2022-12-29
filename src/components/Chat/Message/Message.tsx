@@ -5,6 +5,7 @@ import { ChatContext } from "../../App";
 import Dot from "../../Dot/Dot";
 import { getTime } from "../../utils";
 import styles from "./Message.module.css";
+import avatarImage from "../../../icons/avatar.png";
 
 interface InputProps {
   index: number;
@@ -25,6 +26,7 @@ const Message: React.FC<InputProps> = ({ index }) => {
 
   return (
     <main className={`${styles.main} ${isUserMessage ? styles.userMessage : ""}`}>
+      <img className={styles.avatar} src={avatarImage} alt="avatar" />
       <header className={styles.header}>
         <button className={styles.userName} onClick={onUsernameClick}>
           {from_user}
