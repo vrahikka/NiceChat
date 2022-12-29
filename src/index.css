@@ -10,6 +10,26 @@ html {
   font-size: 16px;
 }
 
+p {
+  font-size: 1rem;
+  color: var(--white);
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  color: var(--white);
+}
+
 body {
   min-height: 100%;
   width: 100%;
@@ -21,9 +41,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  height: 100%;
-  width: 100%;
+:root {
+  --primary: hsl(35, 100%, 53%);
+  --red: #f60101;
+  --white: #f1f1f1;
+  --black: #000000;
+  --darkGray: #303030;
+  --gray: #595959;
+  --lightGray: #bbbbbb;
 }
 
 code {

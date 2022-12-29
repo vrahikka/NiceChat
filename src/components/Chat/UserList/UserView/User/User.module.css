@@ -1,0 +1,22 @@
+.main {
+  display: grid;
+  grid-template-columns: 3rem 1fr 1rem;
+  gap: 1rem;
+  background-color: var(--gray);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  align-items: center;
+}
+
+.main:active {
+  transform: translateY(1px);
+}
+
+.main:hover {
+  outline: solid 1px var(--primary);
+}
+
+.avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+}

@@ -7,6 +7,8 @@ import InputField from "../InputField/InputField";
 import styles from "./Chat.module.css";
 import Debug from "./Debug/Debug";
 import Message from "./Message/Message";
+import UserList from "./UserList/UserList";
+import avatarImage from "../../icons/avatar.png";
 
 const Chat: React.FC = () => {
   const { dispatch, state } = React.useContext(ChatContext);
@@ -35,22 +37,28 @@ const Chat: React.FC = () => {
 
   return (
     <main className={styles.main}>
-      <header className={styles.header}>
-        <p>{userName}</p>
-        <Button onClick={() => setDebug(!debug)} text="Debug" />
-      </header>
-      <div className={styles.content}>
-        <div id="messages_div" className={styles.messages}>
-          {messages.map((message, index) => (
-            <Message key={`${message.from_user}${index}`} index={index} />
-          ))}
+      <UserList />
+      <div className={styles.chatContainer}>
+        <header className={styles.header}>
+          <div className={styles.userInfo}>
+            <img className={styles.avatar} src={avatarImage} alt="avatar" />
+            <p>{userName}</p>
+          </div>
+          <Button onClick={() => setDebug(!debug)} text="Debug" />
+        </header>
+        <div className={styles.content}>
+          <div id="messages_div" className={styles.messages}>
+            {messages.map((message, index) => (
+              <Message key={`${message.from_user}${index}`} index={index} />
+            ))}
+          </div>
+          {debug && <Debug />}
         </div>
-        {debug && <Debug />}
+        <form className={styles.inputForm} onSubmit={send}>
+          <InputField id="input" value={text} onInput={(value) => setText(value)} placeholder="Text" />
+          <Button disabled={!text} onClick={() => send()} text="Send" />
+        </form>
       </div>
-      <form className={styles.inputForm} onSubmit={send}>
-        <InputField id="input" value={text} onInput={(value) => setText(value)} placeholder="Text" />
-        <Button disabled={!text} onClick={() => send()} text="Send" />
-      </form>
     </main>
   );
 };

@@ -1,11 +1,12 @@
 .main {
   display: flex;
   flex-direction: column;
-  background-color: yellow;
+  background-color: var(--darkGray);
   width: 30%;
   height: 100%;
   padding: 1rem;
   gap: 1rem;
+  border-top: solid 1px var(--lightGray);
 }
 
 .userList {

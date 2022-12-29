@@ -4,7 +4,6 @@ import { Actions, initialState, reducer, State } from "../state/reducer";
 import { selectIsLoggedIn, selectSelectedUsername } from "../state/selectors";
 import styles from "./App.module.css";
 import Chat from "./Chat/Chat";
-import UserView from "./Chat/UserView/UserView";
 import Login from "./Login/Login";
 
 interface ContextDefaultValue {
@@ -22,7 +21,6 @@ function App() {
 
   return (
     <ChatContext.Provider value={{ state, dispatch }}>
-      {selectedUsername && <UserView />}
       <div className={styles.App}>{render()}</div>;
     </ChatContext.Provider>
   );

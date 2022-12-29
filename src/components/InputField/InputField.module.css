@@ -8,7 +8,19 @@
 }
 
 .inputField {
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  border: 0;
+  background-color: var(--gray);
+  color: var(--white);
+  padding: 0.5rem;
   width: 100%;
+}
+
+.inputField::placeholder {
+  font-size: 1rem;
+  color: var(--lightGray);
+  opacity: 1; /* Firefox */
 }
 
 .textArea {
