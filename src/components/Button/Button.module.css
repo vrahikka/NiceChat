@@ -6,12 +6,19 @@
   background-color: var(--gray);
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
-.button:hover {
+.button:not([disabled]):hover {
   outline: solid 1px var(--primary);
 }
 
-.button:active {
+.button:not([disabled]):active {
   transform: translateY(1px);
+}
+
+.button:disabled {
+  background-color: var(--lightGray);
+  color: var(--gray);
+  cursor: default;
 }

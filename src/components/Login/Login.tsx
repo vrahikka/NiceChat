@@ -21,7 +21,7 @@ const Login: React.FC = () => {
     <div className={styles.loginContainer}>
       <div className={styles.loginModal}>
         <form onSubmit={onSubmit} className={styles.form}>
-          <h1 className={styles.header}>join lobby</h1>
+          <h1 className={styles.header}>Join Noice Chat</h1>
           <InputField id="username" label="Username" value={userName} onInput={(value) => setUserName(value)} />
         </form>
         <p className={styles.infoText}> User name has to be more than 3 characters long and cannot contain special characters.</p>
