@@ -10,7 +10,7 @@
 }
 
 .button:not([disabled]):hover {
-  outline: solid 1px var(--primary);
+  box-shadow: 1px -1px 3px var(--primary) inset, -1px 1px 3px var(--primary) inset;
 }
 
 .button:not([disabled]):active {

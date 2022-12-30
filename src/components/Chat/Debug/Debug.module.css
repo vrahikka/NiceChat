@@ -32,7 +32,7 @@
 }
 
 .button:hover {
-  outline: solid 1px var(--white);
+  box-shadow: 1px -1px 3px var(--white) inset, -1px 1px 3px var(--white) inset;
 }
 
 .button:active {
