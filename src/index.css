@@ -28,6 +28,7 @@ h5,
 h6,
 label {
   color: var(--white);
+  margin: 0;
 }
 
 body {

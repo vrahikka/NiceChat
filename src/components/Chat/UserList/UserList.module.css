@@ -1,5 +1,5 @@
 .main {
-  width: 20rem;
+  min-width: 20rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,6 @@
 .header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--gray);
   height: 4.5rem;
   padding: 1rem;
 }

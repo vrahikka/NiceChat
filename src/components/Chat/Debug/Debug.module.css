@@ -5,8 +5,38 @@
   width: 30%;
   height: 100%;
   padding: 1rem;
-  gap: 1rem;
+  gap: 2.5rem;
   border-top: solid 1px var(--lightGray);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info {
+  white-space: normal;
+  color: var(--lightGray);
+  font-size: 0.75rem;
+}
+
+.button {
+  outline: none;
+  border: 0;
+  font-size: 1rem;
+  color: var(--black);
+  background-color: var(--gray);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.button:hover {
+  outline: solid 1px var(--white);
+}
+
+.button:active {
+  transform: translateY(1px);
 }
 
 .userList {

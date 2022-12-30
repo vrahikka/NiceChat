@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  /* From https://css.glass */
   background: hsla(0, 0%, 45%, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -20,6 +19,10 @@
   align-self: flex-end;
 }
 
+.userMessage h4 {
+  color: var(--primary);
+}
+
 .header {
   color: var(--white);
   display: flex;
@@ -32,18 +35,13 @@
   color: var(--white);
 }
 
-.userName {
-  all: unset;
-  cursor: pointer;
-  font-weight: 600;
-}
-
 .userName:hover {
   color: gray;
 }
 
 .text {
   margin: 0.5rem 0;
+  white-space: normal;
 }
 
 .avatar {

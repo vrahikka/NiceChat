@@ -28,9 +28,9 @@ const Message: React.FC<InputProps> = ({ index }) => {
     <main className={`${styles.main} ${isUserMessage ? styles.userMessage : ""}`}>
       <img className={styles.avatar} src={avatarImage} alt="avatar" />
       <header className={styles.header}>
-        <button className={styles.userName} onClick={onUsernameClick}>
+        <h4 className={styles.userName} onClick={onUsernameClick}>
           {from_user}
-        </button>
+        </h4>
         {online !== undefined && <Dot online={online} />}
         <time className={styles.time}>{getTime(sent_at)}</time>
       </header>

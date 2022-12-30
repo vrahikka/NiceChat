@@ -3,7 +3,7 @@
   grid-template-columns: 3rem 1fr 1rem;
   gap: 1rem;
   background-color: var(--gray);
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   align-items: center;
 }
@@ -17,6 +17,6 @@
 }
 
 .avatar {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2rem;
+  width: 2rem;
 }
