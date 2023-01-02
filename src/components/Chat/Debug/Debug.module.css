@@ -39,17 +39,17 @@
   transform: translateY(1px);
 }
 
+.button_online {
+  background-color: limegreen;
+}
+
+.button_offline {
+  background-color: red;
+}
+
 .userList {
   all: unset;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.userOnline {
-  background-color: limegreen;
-}
-
-.userOffline {
-  background-color: red;
 }

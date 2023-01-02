@@ -1,15 +1,14 @@
-.onlineDot {
+.dot {
   display: inline-block;
   border-radius: 50%;
-  background-color: limegreen;
   width: 0.75rem;
   height: 0.75rem;
 }
 
-.offlineDot {
-  display: inline-block;
-  border-radius: 50%;
+.dot_online {
+  background-color: limegreen;
+}
+
+.dot_offline {
   background-color: red;
-  width: 0.75rem;
-  height: 0.75rem;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { ActionType } from "../../../state/reducer";
 import { selectIsUserMessage, selectMessage, selectUser } from "../../../state/selectors";
 import { ChatContext } from "../../App";
 import Dot from "../../Dot/Dot";
@@ -12,25 +11,17 @@ interface InputProps {
 }
 
 const Message: React.FC<InputProps> = ({ index }) => {
-  const { dispatch, state } = React.useContext(ChatContext);
+  const { state } = React.useContext(ChatContext);
 
   const { from_user, sent_at, text } = selectMessage(state, index);
   const { online } = { ...selectUser(state, from_user) };
   const isUserMessage = selectIsUserMessage(state, from_user);
 
-  const onUsernameClick = () => {
-    if (dispatch) {
-      dispatch({ type: ActionType.SetSelectedUser, payload: from_user });
-    }
-  };
-
   return (
     <main className={`${styles.main} ${isUserMessage ? styles.userMessage : ""}`}>
       <img className={styles.avatar} src={avatarImage} alt="avatar" />
       <header className={styles.header}>
-        <h4 className={styles.userName} onClick={onUsernameClick}>
-          {from_user}
-        </h4>
+        <h4>{from_user}</h4>
         {online !== undefined && <Dot online={online} />}
         <time className={styles.time}>{getTime(sent_at)}</time>
       </header>

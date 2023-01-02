@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Dot: React.FC<Props> = ({ online }) => {
-  return <div className={online ? styles.onlineDot : styles.offlineDot} />;
+  return <div className={`${styles.dot} ${online ? styles.dot_online : styles.dot_offline}`} />;
 };
 
 export default Dot;

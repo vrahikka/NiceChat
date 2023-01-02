@@ -46,7 +46,7 @@ const Debug: React.FC = () => {
           {Object.values(users)
             .filter((user) => user.username !== currentUsersName)
             .map((user) => (
-              <button key={user.username} className={`${styles.button} ${user.online ? styles.userOnline : styles.userOffline}`} onClick={() => onClickUser(user.username)}>
+              <button key={user.username} className={`${styles.button} ${user.online ? styles.button_online : styles.button_offline}`} onClick={() => onClickUser(user.username)}>
                 {user.username}
               </button>
             ))}
