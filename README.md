@@ -1,4 +1,4 @@
-# Getting Started with NoiceChat
+# Getting Started with NiceChat
 
 In the project directory install modules with `yarn` and run it with `yarn start`.
 
